@@ -1,4 +1,4 @@
-# COMER: Sclable and Accurate Dialogue State Tracking via Hierachical Sequence Generation
+## COMER: Sclable and Accurate Dialogue State Tracking via Hierachical Sequence Generation
 
 This is the PyTorch implementation of the paper:
 **Sclable and Accurate Dialogue State Tracking via Hierachical Sequence Generation**. **Liliang Ren**,Jianmo Ni, Julian McAuley. ***EMNLP 2019***
