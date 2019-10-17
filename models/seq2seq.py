@@ -29,8 +29,7 @@ class seq2seq(nn.Module):
     def __init__(self, config, src_vocab, tgt_vocab, use_cuda, bmodel,pretrain=None, score_fn=None):
         super(seq2seq, self).__init__()
         if pretrain is not None:
-            with torch.no_grad():
-                self.slot_embedding = nn.Embedding.from_pretrained(pretrain['slot'])
+            self.slot_embedding = nn.Embedding.from_pretrained(pretrain['slot'],freeze=False)
         else:
             self.slot_embedding = None
         if bert:
@@ -154,19 +153,23 @@ class seq2seq(nn.Module):
             belief_ids=[BOS]
             domains=sample_ids.squeeze(1).tolist()
             for j,d in enumerate(final_outputs[0]):#tgt[i].split(1):
+                slot_exist=True
+                tmp_state=[]
                 
                 ssample_ids, final_state = \
                     self.decoder.sample(bos, state,True, (b_out.transpose(0, 1), \
                              user_out.transpose(0, 1), sys_out.transpose(0, 1)),story,lengths,d)
-
+                
                 sids.append(ssample_ids.t())#(B,S)
                 if j < len(domains)-1:
-                    belief_ids.append(domains[j])
-                    belief_ids.append(self.dsep_id)
+                    tmp_state.append(domains[j])
+                    tmp_state.append(self.dsep_id)
                 
                 vid=[]
                 slots=ssample_ids.squeeze(1).tolist()
-                
+                if len(slots)==1:
+                    slot_exist=False
+                cnt=0
                 for k,s in enumerate(final_state[0]):#tgt[i].split(1):
                     
                     vsample_ids, vfinal_state = \
@@ -176,14 +179,21 @@ class seq2seq(nn.Module):
                     vid.append(vsample_ids.t())
 
                     values=vsample_ids.squeeze(1).tolist()
-                
+                    if len(values)==1:
+                       cnt+=1
+                       continue
+
                     if k < len(slots)-1 and j < len(domains)-1:
-                        belief_ids.append(slots[k])
-                        belief_ids.append(self.ssep_id)
-                        belief_ids.extend(values[:-1])
-                        belief_ids.append(self.vsep_id)
+                        tmp_state.append(slots[k])
+                        tmp_state.append(self.ssep_id)
+                        tmp_state.extend(values[:-1])
+                        tmp_state.append(self.vsep_id)
+                
+                if slot_exist and cnt!=len(slots):
+                    belief_ids.extend(tmp_state)    
                 vids.append(vid)
             belief_ids.append(EOS)
+            #print(belief_ids) 
             belief_ids=torch.LongTensor(belief_ids).unsqueeze(1).cuda()
             
             all_vsample_ids.append(vids)

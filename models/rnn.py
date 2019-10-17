@@ -179,6 +179,7 @@ class rnn_decoder(nn.Module):
             output=self.re3(self.linear3(output))
 #             output=self.dp3(output)
             output=self.re4(self.linear4(output))
+            output = self.dropout(output)
             outputs += [output]
             score=self.compute_score(output,output0,contexts,story,lengths)
             scores.append(score)
@@ -192,11 +193,10 @@ class rnn_decoder(nn.Module):
         
         # convert hidden to vocab
     def compute_score(self, hiddens,eb,cont,story,lengths):      
-        hiddens = self.dropout(hiddens)
+        #hiddens = self.dropout(hiddens)
         
         word = self.slot_linear(hiddens)
-        with torch.no_grad():
-            embs=Variable(self.slot_embedding.weight.t().data)
+        embs=self.slot_embedding.weight.t()
         scores_v = torch.matmul(word, embs)          
         scores=self.log_softmax(scores_v)
         return scores 

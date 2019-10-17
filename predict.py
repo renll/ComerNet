@@ -5,7 +5,7 @@ import torch.utils.data
 import models
 import dataloader
 import utils 
-import dict
+import dict as dic
 
 import os
 import argparse
@@ -14,13 +14,14 @@ import math
 import json
 import collections
 
+from collections import defaultdict
 #config
 parser = argparse.ArgumentParser(description='predict.py')
 parser.add_argument('-config', default='config.yaml', type=str,
                     help="config file")
 parser.add_argument('-gpus', default=[0], nargs='+', type=int,
                     help="Use CUDA on the listed devices.")
-parser.add_argument('-restore', default='data/log/norml_mwNestedNOND128NOsaA1F/checkpoint.pt', type=str,
+parser.add_argument('-restore', default='data/log/norml_mwNestedNOND128NOsaA1FNN/checkpoint.pt', type=str,
                     help="restore checkpoint")
 parser.add_argument('-seed', type=int, default=1234,
                     help="Random seed")
@@ -121,54 +122,61 @@ for src1, src1_len, src2,src2_len, src3, src3_len, tgt, tgt_len,tgtv, tgtv_len,t
             x=x.data.cpu()
             y=y.data.cpu()
             xt=x[0][:-1].tolist()
-            preds.append(xt)
-            svt=[]
-            svt.extend(xt)
-            for k in xv:
-                svt.extend(k[0][:-1].tolist())
-            joint_preds.append(svt)
 
-            
-            vvt=[]
-            vvt.extend(svt)
-            for k in xvv:
-                for j in k:
-                    vvt.extend(j[0][:-1].tolist())
+            vvt=defaultdict(dict)
+            svt={}
+#             print("xvv:", xvv)
+            for i,k in enumerate(xvv[:-1]):
+                slots=xv[:-1][i][0][:-1].tolist()
+                if len(slots)!=0:
+                    for ji,j in enumerate(k[:-1]):
+                        jt=j[0][:-1].tolist()
+                        svt[xt[i]]=set(slots)
+#                       print("jt:",jt)
+                        if len(jt)!=0:
+                            vvt[xt[i]][slots[ji]]=jt
+            preds.append(set(xt))  
+            joint_preds.append(svt)
             joint_allps.append(vvt)
+            #print("vvt:",vvt)
+
 
             #print(joint_preds)
             label = []
             for l in y[1:].tolist():
-                if l == 102:
+                if l == dic.EOS:
                     break
                 label.append(l)
 
-            labels.append(label) 
+            labels.append(set(label)) 
 
-            joint_label = []
-            joint_label.extend(label)
-            for k in yv[1:].tolist():
-                if sum(k[1:])==0:
+            joint_label = {}
+            joint_all=defaultdict(dict)
+            for i,j in enumerate(yvv[1:].tolist()):
+                slots=yv[1:].tolist()[i]
+                if sum(slots[1:])==0:
                     break
                 else:
-                    for l in k[1:]:
-                        if l == 102:
+                    s=[]
+                    for l in slots[1:]:
+                        if l == dic.EOS:
                             break
-                        joint_label.append(l)
-            joint_labels.append(joint_label)
-            
-            joint_all=[]
-            joint_all.extend(joint_label)
-            for j in yvv[1:].tolist():
-                for k in j[1:]:
-                    if sum(k[1:])==0:
-                        break
-                    else:
-                        for l in k[1:]:
-                            if l == 102:
+                        s.append(l)
+                    if len(s)!=0:
+                        joint_label[label[i]]=set(s)   
+                        for ki,k in enumerate(j[1:]):
+                            if sum(k[1:])==0:
                                 break
-                            joint_all.append(l)
-            joint_alls.append(joint_all)
+                            else:
+                                v=[]
+                                for l in k[1:]:
+                                    if l == dic.EOS:
+                                        break
+                                    v.append(l)
+                                if len(v)!=0:
+                                    joint_all[label[i]][s[ki]]=v 
+            joint_labels.append(joint_label)
+            joint_alls.append(joint_all)      
 
 # calculate acc
 acc = []
