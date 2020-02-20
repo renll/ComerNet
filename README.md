@@ -2,7 +2,7 @@
 
 This is the PyTorch implementation of the paper:
 **Sclable and Accurate Dialogue State Tracking via Hierachical Sequence Generation**. Liliang Ren,Jianmo Ni, Julian McAuley. ***EMNLP 2019***
-[[PDF]](https://arxiv.org/abs/1909.00754) [[Slides]](https://drive.google.com/file/d/1p3SQN_xPNsUGqS4x1XHJ0ySigbG1dcsL/view?usp=sharing) [[Poster]](https://drive.google.com/file/d/1cqiW7QtX_EvgzIlh9DhZnNTwBwPoQ4LS/view?usp=sharing)
+[[PDF]](https://arxiv.org/abs/1909.00754) [[Slides]](https://drive.google.com/file/d/1p3SQN_xPNsUGqS4x1XHJ0ySigbG1dcsL/view?usp=sharing) [[Poster]](https://drive.google.com/file/d/1cqiW7QtX_EvgzIlh9DhZnNTwBwPoQ4LS/view?usp=sharing) [[Trained Model]](https://drive.google.com/a/eng.ucsd.edu/file/d/1KiL9yoAhKBuGXLQA3IF5TvgnFdSDecT-/view?usp=drivesdk)
 
 The code is written and tested with PyTorch == 1.1.0. The minimum requirement of the graphic memory is 8GB for training on the MultiWoZ dataset.
 
