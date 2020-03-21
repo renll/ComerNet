@@ -4,7 +4,7 @@ import json
 import os
 import re
 import shutil
-import urllib
+import urllib.request
 from collections import OrderedDict
 from io import BytesIO
 from zipfile import ZipFile
@@ -26,11 +26,11 @@ DICT_SIZE = 400
 MAX_LENGTH = 50
 IGNORE_KEYS_IN_GOAL = ['eod', 'topic', 'messageLen', 'message']
 
-fin = file('mapping.pair')
-replacements = []
-for line in fin.readlines():
-    tok_from, tok_to = line.replace('\n', '').split('\t')
-    replacements.append((' ' + tok_from + ' ', ' ' + tok_to + ' '))
+with open('mapping.pair') as fin:
+    replacements = []
+    for line in fin:
+        tok_from, tok_to = line.replace('\n', '').split('\t')
+        replacements.append((' ' + tok_from + ' ', ' ' + tok_to + ' '))
 
 
 def is_ascii(s):
@@ -139,6 +139,7 @@ def normalize(text, clean_value=True):
 
     return text
 
+
 def fixDelex(filename, data, data2, idx, idx_acts):
     """Given system dialogue acts fix automatic delexicalization."""
     try:
@@ -146,7 +147,7 @@ def fixDelex(filename, data, data2, idx, idx_acts):
     except:
         return data
 
-    if not isinstance(turn, str) and not isinstance(turn, unicode):
+    if not isinstance(turn, str):# and not isinstance(turn, unicode):
         for k, act in turn.items():
             if 'Attraction' in k:
                 if 'restaurant_' in data['log'][idx]['text']:
@@ -175,7 +176,7 @@ def getDialogueAct(filename, data, data2, idx, idx_acts):
     except:
         return acts
 
-    if not isinstance(turn, str) and not isinstance(turn, unicode):
+    if not isinstance(turn, str): # and not isinstance(turn, unicode):
         for k in turn.keys():
             # temp = [k.split('-')[0].lower(), k.split('-')[1].lower()]
             # for a in turn[k]:
@@ -189,7 +190,6 @@ def getDialogueAct(filename, data, data2, idx, idx_acts):
                     acts.append([a[0].lower(), normalize(a[1].lower(), False)])
 
     return acts
-
 
 def get_summary_bstate(bstate, get_domain=False):
     """Based on the mturk annotations we form multi-domain belief state"""
@@ -304,6 +304,7 @@ def get_dial(dialogue):
     return dial
 
 
+
 def loadData():
     data_url = "data/multi-woz/data.json"
     dataset_url = "https://www.repository.cam.ac.uk/bitstream/handle/1810/280608/MULTIWOZ2.zip?sequence=3&isAllowed=y"
@@ -313,7 +314,7 @@ def loadData():
 
     if not os.path.exists(data_url):
         print("Downloading and unzipping the MultiWOZ dataset")
-        resp = urllib.urlopen(dataset_url)
+        resp = urllib.request.urlopen(dataset_url)
         zip_ref = ZipFile(BytesIO(resp.read()))
         zip_ref.extractall("data/multi-woz")
         zip_ref.close()
@@ -323,9 +324,10 @@ def loadData():
         shutil.copy('data/multi-woz/MULTIWOZ2 2/dialogue_acts.json', 'data/multi-woz/')
 
 
+
 def getDomain(idx, log, domains, last_domain):
     if idx == 1:
-        active_domains = get_summary_bstate(log[idx]["metadata"], True) 
+        active_domains = get_summary_bstate(log[idx]["metadata"], True)
         crnt_doms = active_domains[0] if len(active_domains)!=0 else domains[0]
         return crnt_doms
     else:
@@ -333,7 +335,7 @@ def getDomain(idx, log, domains, last_domain):
         if len(ds_diff.keys()) == 0: # no clues from dialog states
             crnt_doms = last_domain
         else:
-            crnt_doms = ds_diff.keys()
+            crnt_doms = list(ds_diff.keys())
         return crnt_doms[0] # How about multiple domains in one sentence senario ?
 
 
@@ -358,10 +360,10 @@ def createData():
     # dic = delexicalize.prepareSlotValuesIndependent()
     delex_data = {}
 
-    fin1 = file('data/multi-woz/data.json')
+    fin1 = open('data/multi-woz/data.json', 'r')
     data = json.load(fin1)
 
-    fin2 = file('data/multi-woz/dialogue_acts.json')
+    fin2 = open('data/multi-woz/dialogue_acts.json', 'r')
     data2 = json.load(fin2)
 
     for didx, dialogue_name in enumerate(data):
@@ -421,13 +423,13 @@ def divideData(data):
     """Given test and validation sets, divide
     the data for three different sets"""
     testListFile = []
-    fin = file('data/multi-woz/testListFile.json')
+    fin = open('data/multi-woz/testListFile.json', 'r')
     for line in fin:
         testListFile.append(line[:-1])
     fin.close()
 
     valListFile = []
-    fin = file('data/multi-woz/valListFile.json')
+    fin = open('data/multi-woz/valListFile.json', 'r')
     for line in fin:
         valListFile.append(line[:-1])
     fin.close()
@@ -487,13 +489,13 @@ def divideData(data):
     print("# of dialogues: Train {}, Val {}, Test {}".format(count_train, count_val, count_test))
 
     # save all dialogues
-    with open('data/dev_dials.json', 'wb') as f:
+    with open('data/dev_dials.json', 'w') as f:
         json.dump(val_dials, f, indent=4)
 
-    with open('data/test_dials.json', 'wb') as f:
+    with open('data/test_dials.json', 'w') as f:
         json.dump(test_dials, f, indent=4)
 
-    with open('data/train_dials.json', 'wb') as f:
+    with open('data/train_dials.json', 'w') as f:
         json.dump(train_dials, f, indent=4)
 
     # return word_freqs_usr, word_freqs_sys
