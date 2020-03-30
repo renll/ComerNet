@@ -1,0 +1,1084 @@
+data:	data/save_data
+log:	data/log/
+epoch:	15
+batch_size:	16
+learning_rate:	0.0005
+max_grad_norm:	2
+learning_rate_decay:	0.5
+bidirec:	True
+emb_size:	1024
+encoder_hidden_size:	256
+decoder_hidden_size:	512
+num_layers:	2
+dropout:	0
+eval_interval:	1
+save_interval:	5
+log_interval:	20
+
+seq2seq(
+  (slot_embedding): Embedding(30529, 1024)
+  (src_embedding): BertModel(
+    (embeddings): BertEmbeddings(
+      (word_embeddings): Embedding(30522, 1024)
+      (position_embeddings): Embedding(512, 1024)
+      (token_type_embeddings): Embedding(2, 1024)
+      (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.1)
+    )
+    (encoder): BertEncoder(
+      (layer): ModuleList(
+        (0): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (1): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (2): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (3): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (4): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (5): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (6): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (7): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (8): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (9): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (10): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (11): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (12): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (13): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (14): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (15): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (16): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (17): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (18): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (19): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (20): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (21): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (22): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+        (23): BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=1024, out_features=1024, bias=True)
+              (key): Linear(in_features=1024, out_features=1024, bias=True)
+              (value): Linear(in_features=1024, out_features=1024, bias=True)
+              (dropout): Dropout(p=0.1)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=1024, out_features=1024, bias=True)
+              (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=1024, out_features=4096, bias=True)
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=4096, out_features=1024, bias=True)
+            (LayerNorm): FusedLayerNorm(torch.Size([1024]), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1)
+          )
+        )
+      )
+    )
+    (pooler): BertPooler(
+      (dense): Linear(in_features=1024, out_features=1024, bias=True)
+      (activation): Tanh()
+    )
+  )
+  (encoder): rnn_encoder(
+    (rnn): LSTM(1024, 256, num_layers=2, bidirectional=True)
+  )
+  (decoder): rnn_decoder(
+    (slot_embedding): Embedding(30529, 1024)
+    (rnn): StackedLSTM(
+      (dropout): Dropout(p=0)
+      (layers): ModuleList(
+        (0): LSTMCell(1024, 512)
+        (1): LSTMCell(512, 512)
+      )
+    )
+    (slot_linear): Linear(in_features=512, out_features=1024, bias=True)
+    (attention): global_attention(
+      (linear_in): Linear(in_features=512, out_features=512, bias=True)
+      (softmax): Softmax()
+      (linear_out): Linear(in_features=512, out_features=512, bias=True)
+    )
+    (linear_out): Linear(in_features=2048, out_features=512, bias=True)
+    (re1): ReLU()
+    (linear_slot): Linear(in_features=512, out_features=512, bias=True)
+    (re2): ReLU()
+    (linear3): Linear(in_features=512, out_features=512, bias=True)
+    (re3): ReLU()
+    (sigmoid): Sigmoid()
+    (log_softmax): LogSoftmax()
+    (linear4): Linear(in_features=512, out_features=512, bias=True)
+    (re4): ReLU()
+    (dropout): Dropout(p=0.5)
+  )
+  (criterion): NLLLoss()
+)
+
+total number of trainable parameters: 43602944
+
+score function is 
+
+time: 429.001, epoch:   1, updates:       20, train loss: 7.84684, train sloss: 8.18349, train vloss: 7.86175
+time: 447.723, epoch:   1, updates:       40, train loss: 2.73874, train sloss: 3.50699, train vloss: 4.39407
+time: 452.081, epoch:   1, updates:       60, train loss: 1.53455, train sloss: 2.38249, train vloss: 3.56700
+time: 428.624, epoch:   1, updates:       80, train loss: 1.26112, train sloss: 1.68221, train vloss: 2.92155
+time: 416.231, epoch:   1, updates:      100, train loss: 1.15530, train sloss: 1.38491, train vloss: 2.55007
+time: 440.586, epoch:   1, updates:      120, train loss: 1.01462, train sloss: 1.29115, train vloss: 2.47705
+time: 439.143, epoch:   1, updates:      140, train loss: 0.95187, train sloss: 1.19046, train vloss: 2.28471
+time: 412.257, epoch:   1, updates:      160, train loss: 0.72311, train sloss: 1.10437, train vloss: 2.15462
+time: 444.629, epoch:   1, updates:      180, train loss: 0.58008, train sloss: 1.01048, train vloss: 2.04101
+time: 460.398, epoch:   1, updates:      200, train loss: 0.47679, train sloss: 0.90468, train vloss: 1.95767
+time: 425.992, epoch:   1, updates:      220, train loss: 0.39370, train sloss: 0.91301, train vloss: 1.90956
+time: 450.225, epoch:   1, updates:      240, train loss: 0.20551, train sloss: 0.82973, train vloss: 1.74938
+time: 438.299, epoch:   1, updates:      260, train loss: 0.17996, train sloss: 0.76493, train vloss: 1.67136
+time: 423.817, epoch:   1, updates:      280, train loss: 0.17217, train sloss: 0.76383, train vloss: 1.64326
+time: 475.736, epoch:   1, updates:      300, train loss: 0.19374, train sloss: 0.75101, train vloss: 1.58994
+time: 458.730, epoch:   1, updates:      320, train loss: 0.15224, train sloss: 0.76478, train vloss: 1.63537
+time: 395.698, epoch:   1, updates:      340, train loss: 0.10194, train sloss: 0.64964, train vloss: 1.48830
+time: 431.051, epoch:   1, updates:      360, train loss: 0.11471, train sloss: 0.67276, train vloss: 1.49629
+time: 435.477, epoch:   1, updates:      380, train loss: 0.11352, train sloss: 0.62590, train vloss: 1.55238
+time: 445.793, epoch:   1, updates:      400, train loss: 0.13757, train sloss: 0.61327, train vloss: 1.40695
+time: 397.281, epoch:   1, updates:      420, train loss: 0.09373, train sloss: 0.56793, train vloss: 1.41845
+time: 409.689, epoch:   1, updates:      440, train loss: 0.09887, train sloss: 0.58647, train vloss: 1.39817
+time: 458.330, epoch:   1, updates:      460, train loss: 0.14227, train sloss: 0.55964, train vloss: 1.37649
+time: 420.027, epoch:   1, updates:      480, train loss: 0.09259, train sloss: 0.48279, train vloss: 1.32362
+time: 417.312, epoch:   1, updates:      500, train loss: 0.10925, train sloss: 0.47665, train vloss: 1.35717
+time: 441.773, epoch:   1, updates:      520, train loss: 0.15845, train sloss: 0.49300, train vloss: 1.36545
+time: 308.829, epoch:   2, updates:      540, train loss: 0.09779, train sloss: 0.44286, train vloss: 1.30250
+time: 399.160, epoch:   2, updates:      560, train loss: 0.08380, train sloss: 0.38923, train vloss: 1.20280
+time: 408.224, epoch:   2, updates:      580, train loss: 0.06589, train sloss: 0.35787, train vloss: 1.10276
+time: 427.548, epoch:   2, updates:      600, train loss: 0.09402, train sloss: 0.34314, train vloss: 1.13209
+time: 430.249, epoch:   2, updates:      620, train loss: 0.09098, train sloss: 0.35348, train vloss: 1.19094
+time: 465.440, epoch:   2, updates:      640, train loss: 0.10521, train sloss: 0.35700, train vloss: 1.16043
+time: 445.991, epoch:   2, updates:      660, train loss: 0.10393, train sloss: 0.35115, train vloss: 1.11064
+time: 439.995, epoch:   2, updates:      680, train loss: 0.07084, train sloss: 0.34865, train vloss: 1.18085
+time: 422.305, epoch:   2, updates:      700, train loss: 0.08929, train sloss: 0.35441, train vloss: 1.06935
+time: 465.467, epoch:   2, updates:      720, train loss: 0.09593, train sloss: 0.31773, train vloss: 1.07987
+time: 397.902, epoch:   2, updates:      740, train loss: 0.17625, train sloss: 0.33822, train vloss: 1.11821
+time: 434.932, epoch:   2, updates:      760, train loss: 0.07163, train sloss: 0.29367, train vloss: 1.07982
+time: 415.447, epoch:   2, updates:      780, train loss: 0.09963, train sloss: 0.32610, train vloss: 1.04782
+time: 424.257, epoch:   2, updates:      800, train loss: 0.08103, train sloss: 0.30426, train vloss: 0.97138
+time: 462.113, epoch:   2, updates:      820, train loss: 0.10134, train sloss: 0.29902, train vloss: 0.95946
+time: 468.851, epoch:   2, updates:      840, train loss: 0.07163, train sloss: 0.28166, train vloss: 0.97954
+time: 433.450, epoch:   2, updates:      860, train loss: 0.05965, train sloss: 0.28742, train vloss: 0.93835
+time: 458.345, epoch:   2, updates:      880, train loss: 0.07939, train sloss: 0.28653, train vloss: 0.98421
+time: 440.502, epoch:   2, updates:      900, train loss: 0.07409, train sloss: 0.26793, train vloss: 0.94662
+time: 444.556, epoch:   2, updates:      920, train loss: 0.09043, train sloss: 0.25787, train vloss: 0.92365
+time: 405.800, epoch:   2, updates:      940, train loss: 0.05743, train sloss: 0.24096, train vloss: 0.86159
+time: 414.267, epoch:   2, updates:      960, train loss: 0.08057, train sloss: 0.26797, train vloss: 0.85895
+time: 413.339, epoch:   2, updates:      980, train loss: 0.07104, train sloss: 0.26359, train vloss: 0.82158
+time: 438.194, epoch:   2, updates:     1000, train loss: 0.14598, train sloss: 0.28183, train vloss: 0.86450
+time: 445.836, epoch:   2, updates:     1020, train loss: 0.07597, train sloss: 0.26787, train vloss: 0.83121
+time: 419.805, epoch:   2, updates:     1040, train loss: 0.08349, train sloss: 0.23398, train vloss: 0.80639
+time: 98.135, epoch:   3, updates:     1060, train loss: 0.11485, train sloss: 0.24347, train vloss: 0.69191
+time: 443.202, epoch:   3, updates:     1080, train loss: 0.07593, train sloss: 0.21519, train vloss: 0.72677
+time: 407.505, epoch:   3, updates:     1100, train loss: 0.08323, train sloss: 0.24388, train vloss: 0.71929
+time: 421.234, epoch:   3, updates:     1120, train loss: 0.06022, train sloss: 0.24280, train vloss: 0.68990
+time: 433.855, epoch:   3, updates:     1140, train loss: 0.07021, train sloss: 0.22856, train vloss: 0.66132
+time: 482.011, epoch:   3, updates:     1160, train loss: 0.15874, train sloss: 0.25221, train vloss: 0.66578
+time: 408.471, epoch:   3, updates:     1180, train loss: 0.16669, train sloss: 0.25598, train vloss: 0.69729
+time: 430.252, epoch:   3, updates:     1200, train loss: 0.08885, train sloss: 0.27469, train vloss: 0.68002
+time: 465.665, epoch:   3, updates:     1220, train loss: 0.10446, train sloss: 0.24297, train vloss: 0.61383
+time: 421.792, epoch:   3, updates:     1240, train loss: 0.08561, train sloss: 0.25034, train vloss: 0.59956
+time: 400.704, epoch:   3, updates:     1260, train loss: 0.06256, train sloss: 0.24800, train vloss: 0.57262
+time: 474.909, epoch:   3, updates:     1280, train loss: 0.05884, train sloss: 0.20575, train vloss: 0.55257
+time: 432.645, epoch:   3, updates:     1300, train loss: 0.05782, train sloss: 0.19805, train vloss: 0.55298
+time: 443.633, epoch:   3, updates:     1320, train loss: 0.07595, train sloss: 0.22438, train vloss: 0.56595
+time: 392.351, epoch:   3, updates:     1340, train loss: 0.07957, train sloss: 0.25855, train vloss: 0.58926
+time: 392.849, epoch:   3, updates:     1360, train loss: 0.05779, train sloss: 0.22462, train vloss: 0.51910
+time: 459.321, epoch:   3, updates:     1380, train loss: 0.08575, train sloss: 0.20146, train vloss: 0.46888
+time: 460.493, epoch:   3, updates:     1400, train loss: 0.05777, train sloss: 0.17358, train vloss: 0.45153
+time: 441.814, epoch:   3, updates:     1420, train loss: 0.07691, train sloss: 0.19012, train vloss: 0.43113
+time: 440.276, epoch:   3, updates:     1440, train loss: 0.07646, train sloss: 0.20438, train vloss: 0.47406
+time: 426.132, epoch:   3, updates:     1460, train loss: 0.07298, train sloss: 0.18862, train vloss: 0.42309
+time: 446.636, epoch:   3, updates:     1480, train loss: 0.08185, train sloss: 0.20026, train vloss: 0.43132
+time: 417.660, epoch:   3, updates:     1500, train loss: 0.06862, train sloss: 0.19258, train vloss: 0.39136
+time: 431.843, epoch:   3, updates:     1520, train loss: 0.09086, train sloss: 0.19437, train vloss: 0.43301
+time: 449.496, epoch:   3, updates:     1540, train loss: 0.06672, train sloss: 0.18318, train vloss: 0.40266
+time: 421.358, epoch:   3, updates:     1560, train loss: 0.09868, train sloss: 0.18920, train vloss: 0.41978
+time: 421.234, epoch:   3, updates:     1580, train loss: 0.07314, train sloss: 0.17556, train vloss: 0.40125
+time: 399.805, epoch:   4, updates:     1600, train loss: 0.05955, train sloss: 0.18678, train vloss: 0.37163
+time: 422.186, epoch:   4, updates:     1620, train loss: 0.08648, train sloss: 0.17944, train vloss: 0.32985
+time: 389.352, epoch:   4, updates:     1640, train loss: 0.05910, train sloss: 0.17220, train vloss: 0.35129
+time: 436.680, epoch:   4, updates:     1660, train loss: 0.05382, train sloss: 0.16198, train vloss: 0.34437
+time: 410.682, epoch:   4, updates:     1680, train loss: 0.08009, train sloss: 0.18680, train vloss: 0.35701
+time: 429.647, epoch:   4, updates:     1700, train loss: 0.12988, train sloss: 0.20471, train vloss: 0.36922
+time: 401.167, epoch:   4, updates:     1720, train loss: 0.09116, train sloss: 0.17921, train vloss: 0.34968
+time: 460.026, epoch:   4, updates:     1740, train loss: 0.09031, train sloss: 0.18363, train vloss: 0.31884
+time: 438.543, epoch:   4, updates:     1760, train loss: 0.07562, train sloss: 0.19367, train vloss: 0.33067
+time: 466.867, epoch:   4, updates:     1780, train loss: 0.05321, train sloss: 0.17645, train vloss: 0.29753
+time: 482.852, epoch:   4, updates:     1800, train loss: 0.07008, train sloss: 0.18563, train vloss: 0.33970
+time: 401.508, epoch:   4, updates:     1820, train loss: 0.05610, train sloss: 0.16010, train vloss: 0.28588
+time: 405.791, epoch:   4, updates:     1840, train loss: 0.04548, train sloss: 0.15662, train vloss: 0.29839
+time: 411.396, epoch:   4, updates:     1860, train loss: 0.05841, train sloss: 0.15487, train vloss: 0.28022
+time: 505.944, epoch:   4, updates:     1880, train loss: 0.07862, train sloss: 0.16232, train vloss: 0.32851
+time: 450.501, epoch:   4, updates:     1900, train loss: 0.04457, train sloss: 0.16609, train vloss: 0.27836
+time: 430.489, epoch:   4, updates:     1920, train loss: 0.04975, train sloss: 0.13902, train vloss: 0.27428
+time: 469.726, epoch:   4, updates:     1940, train loss: 0.06851, train sloss: 0.16367, train vloss: 0.28377
+time: 423.760, epoch:   4, updates:     1960, train loss: 0.04471, train sloss: 0.14184, train vloss: 0.25629
+time: 464.174, epoch:   4, updates:     1980, train loss: 0.05746, train sloss: 0.15875, train vloss: 0.26644
+time: 446.307, epoch:   4, updates:     2000, train loss: 0.04801, train sloss: 0.14244, train vloss: 0.25232
+time: 474.321, epoch:   4, updates:     2020, train loss: 0.05951, train sloss: 0.17024, train vloss: 0.25151
+time: 467.194, epoch:   4, updates:     2040, train loss: 0.06652, train sloss: 0.17686, train vloss: 0.29742
+time: 493.190, epoch:   4, updates:     2060, train loss: 0.04416, train sloss: 0.14070, train vloss: 0.25001
+time: 469.322, epoch:   4, updates:     2080, train loss: 0.04771, train sloss: 0.17219, train vloss: 0.27649
+time: 424.168, epoch:   4, updates:     2100, train loss: 0.05072, train sloss: 0.15772, train vloss: 0.26702
+time: 254.414, epoch:   5, updates:     2120, train loss: 0.04225, train sloss: 0.15173, train vloss: 0.24884
+time: 412.709, epoch:   5, updates:     2140, train loss: 0.03859, train sloss: 0.15393, train vloss: 0.26523
+time: 494.046, epoch:   5, updates:     2160, train loss: 0.04815, train sloss: 0.15553, train vloss: 0.28135
+time: 474.947, epoch:   5, updates:     2180, train loss: 0.04735, train sloss: 0.14234, train vloss: 0.24231
+time: 442.330, epoch:   5, updates:     2200, train loss: 0.05551, train sloss: 0.15339, train vloss: 0.26034
+time: 461.767, epoch:   5, updates:     2220, train loss: 0.08250, train sloss: 0.17459, train vloss: 0.25060
+time: 485.638, epoch:   5, updates:     2240, train loss: 0.05024, train sloss: 0.14488, train vloss: 0.26428
+time: 436.118, epoch:   5, updates:     2260, train loss: 0.05274, train sloss: 0.13919, train vloss: 0.23847
+time: 399.121, epoch:   5, updates:     2280, train loss: 0.03552, train sloss: 0.12889, train vloss: 0.23855
+time: 394.186, epoch:   5, updates:     2300, train loss: 0.05500, train sloss: 0.15845, train vloss: 0.26205
+time: 471.409, epoch:   5, updates:     2320, train loss: 0.04462, train sloss: 0.14616, train vloss: 0.24663
+time: 478.639, epoch:   5, updates:     2340, train loss: 0.06295, train sloss: 0.15236, train vloss: 0.25415
+time: 427.829, epoch:   5, updates:     2360, train loss: 0.05261, train sloss: 0.16183, train vloss: 0.22439
+time: 430.507, epoch:   5, updates:     2380, train loss: 0.04564, train sloss: 0.15501, train vloss: 0.25624
+time: 447.230, epoch:   5, updates:     2400, train loss: 0.06175, train sloss: 0.14838, train vloss: 0.22736
+time: 408.669, epoch:   5, updates:     2420, train loss: 0.04963, train sloss: 0.13683, train vloss: 0.20439
+time: 429.306, epoch:   5, updates:     2440, train loss: 0.06077, train sloss: 0.13182, train vloss: 0.20575
+time: 432.173, epoch:   5, updates:     2460, train loss: 0.07816, train sloss: 0.15394, train vloss: 0.24879
+time: 429.549, epoch:   5, updates:     2480, train loss: 0.06391, train sloss: 0.14392, train vloss: 0.21504
+time: 425.832, epoch:   5, updates:     2500, train loss: 0.05124, train sloss: 0.14541, train vloss: 0.24251
+time: 424.675, epoch:   5, updates:     2520, train loss: 0.05549, train sloss: 0.16030, train vloss: 0.22127
+time: 482.095, epoch:   5, updates:     2540, train loss: 0.05044, train sloss: 0.14363, train vloss: 0.22030
+time: 490.956, epoch:   5, updates:     2560, train loss: 0.04633, train sloss: 0.14259, train vloss: 0.21896
+time: 447.624, epoch:   5, updates:     2580, train loss: 0.04196, train sloss: 0.16157, train vloss: 0.23313
+time: 381.085, epoch:   5, updates:     2600, train loss: 0.04332, train sloss: 0.13473, train vloss: 0.19557
+time: 439.711, epoch:   5, updates:     2620, train loss: 0.06240, train sloss: 0.13341, train vloss: 0.20696
+========evaluating after 5 epochs========
+slot_acc = 0.9384323298074315
+joint_ds_acc = 0.49145646867371845
+joint_all_acc = 0.365202061296447
+best_slot_acc = 0.9384323298074315
+best_joint_acc = 0.49145646867371845
+best_joint_all_acc = 0.365202061296447 at epoch 5
+time: 828.083
+==========================================
+time: 130.077, epoch:   6, updates:     2640, train loss: 0.09062, train sloss: 0.17660, train vloss: 0.23103
+time: 439.720, epoch:   6, updates:     2660, train loss: 0.04432, train sloss: 0.12857, train vloss: 0.22643
+time: 420.101, epoch:   6, updates:     2680, train loss: 0.04814, train sloss: 0.13760, train vloss: 0.18721
+time: 468.337, epoch:   6, updates:     2700, train loss: 0.05685, train sloss: 0.12961, train vloss: 0.19398
+time: 401.247, epoch:   6, updates:     2720, train loss: 0.06902, train sloss: 0.12398, train vloss: 0.18372
+time: 437.345, epoch:   6, updates:     2740, train loss: 0.04997, train sloss: 0.13726, train vloss: 0.20934
+time: 468.839, epoch:   6, updates:     2760, train loss: 0.05761, train sloss: 0.13650, train vloss: 0.20413
+time: 507.396, epoch:   6, updates:     2780, train loss: 0.05262, train sloss: 0.13665, train vloss: 0.19932
+time: 448.832, epoch:   6, updates:     2800, train loss: 0.03975, train sloss: 0.13636, train vloss: 0.18259
+time: 394.936, epoch:   6, updates:     2820, train loss: 0.03982, train sloss: 0.12756, train vloss: 0.19171
+time: 452.982, epoch:   6, updates:     2840, train loss: 0.05382, train sloss: 0.14050, train vloss: 0.20685
+time: 423.986, epoch:   6, updates:     2860, train loss: 0.05607, train sloss: 0.13669, train vloss: 0.17415
+time: 378.379, epoch:   6, updates:     2880, train loss: 0.04752, train sloss: 0.13996, train vloss: 0.20945
+time: 428.766, epoch:   6, updates:     2900, train loss: 0.04148, train sloss: 0.12466, train vloss: 0.18772
+time: 432.647, epoch:   6, updates:     2920, train loss: 0.04380, train sloss: 0.13373, train vloss: 0.19017
+time: 429.650, epoch:   6, updates:     2940, train loss: 0.04253, train sloss: 0.12929, train vloss: 0.18831
+time: 444.658, epoch:   6, updates:     2960, train loss: 0.04934, train sloss: 0.13078, train vloss: 0.19167
+time: 404.375, epoch:   6, updates:     2980, train loss: 0.05384, train sloss: 0.13001, train vloss: 0.18148
+time: 423.772, epoch:   6, updates:     3000, train loss: 0.05009, train sloss: 0.14028, train vloss: 0.19251
+time: 435.665, epoch:   6, updates:     3020, train loss: 0.06040, train sloss: 0.14712, train vloss: 0.19405
+time: 426.380, epoch:   6, updates:     3040, train loss: 0.05092, train sloss: 0.13517, train vloss: 0.17792
+time: 418.738, epoch:   6, updates:     3060, train loss: 0.03414, train sloss: 0.12169, train vloss: 0.19163
+time: 416.422, epoch:   6, updates:     3080, train loss: 0.06010, train sloss: 0.14391, train vloss: 0.18688
+time: 436.267, epoch:   6, updates:     3100, train loss: 0.03976, train sloss: 0.12828, train vloss: 0.20280
+time: 446.238, epoch:   6, updates:     3120, train loss: 0.04744, train sloss: 0.12859, train vloss: 0.20067
+time: 450.017, epoch:   6, updates:     3140, train loss: 0.04845, train sloss: 0.14483, train vloss: 0.20788
+time: 428.546, epoch:   6, updates:     3160, train loss: 0.03892, train sloss: 0.14216, train vloss: 0.19699
+========evaluating after 6 epochs========
+slot_acc = 0.9537564415513968
+joint_ds_acc = 0.531326281529699
+joint_all_acc = 0.40452942771901274
+best_slot_acc = 0.9537564415513968
+best_joint_acc = 0.531326281529699
+best_joint_all_acc = 0.40452942771901274 at epoch 6
+time: 843.707
+==========================================
+time: 403.883, epoch:   7, updates:     3180, train loss: 0.02615, train sloss: 0.11266, train vloss: 0.17472
+time: 457.528, epoch:   7, updates:     3200, train loss: 0.02352, train sloss: 0.11416, train vloss: 0.16441
+time: 422.278, epoch:   7, updates:     3220, train loss: 0.03359, train sloss: 0.11929, train vloss: 0.17154
+time: 442.534, epoch:   7, updates:     3240, train loss: 0.03510, train sloss: 0.14128, train vloss: 0.17098
+time: 449.702, epoch:   7, updates:     3260, train loss: 0.04464, train sloss: 0.13269, train vloss: 0.16858
+time: 453.547, epoch:   7, updates:     3280, train loss: 0.06176, train sloss: 0.11964, train vloss: 0.16681
+time: 451.799, epoch:   7, updates:     3300, train loss: 0.04598, train sloss: 0.12328, train vloss: 0.16865
+time: 389.677, epoch:   7, updates:     3320, train loss: 0.03606, train sloss: 0.12556, train vloss: 0.16193
+time: 480.018, epoch:   7, updates:     3340, train loss: 0.04465, train sloss: 0.13787, train vloss: 0.17703
+time: 412.101, epoch:   7, updates:     3360, train loss: 0.04318, train sloss: 0.12323, train vloss: 0.17457
+time: 444.821, epoch:   7, updates:     3380, train loss: 0.04022, train sloss: 0.14007, train vloss: 0.18131
+time: 399.804, epoch:   7, updates:     3400, train loss: 0.03839, train sloss: 0.12878, train vloss: 0.16163
+time: 404.678, epoch:   7, updates:     3420, train loss: 0.03857, train sloss: 0.12979, train vloss: 0.17933
+time: 461.616, epoch:   7, updates:     3440, train loss: 0.05463, train sloss: 0.15328, train vloss: 0.17932
+time: 431.039, epoch:   7, updates:     3460, train loss: 0.04589, train sloss: 0.13418, train vloss: 0.17656
+time: 417.033, epoch:   7, updates:     3480, train loss: 0.04417, train sloss: 0.13827, train vloss: 0.18874
+time: 441.508, epoch:   7, updates:     3500, train loss: 0.05240, train sloss: 0.13264, train vloss: 0.18354
+time: 437.665, epoch:   7, updates:     3520, train loss: 0.04251, train sloss: 0.12516, train vloss: 0.15984
+time: 400.750, epoch:   7, updates:     3540, train loss: 0.05695, train sloss: 0.12870, train vloss: 0.16051
+time: 398.960, epoch:   7, updates:     3560, train loss: 0.05503, train sloss: 0.12887, train vloss: 0.16780
+time: 415.131, epoch:   7, updates:     3580, train loss: 0.04271, train sloss: 0.12320, train vloss: 0.16920
+time: 422.085, epoch:   7, updates:     3600, train loss: 0.04346, train sloss: 0.11068, train vloss: 0.15879
+time: 431.799, epoch:   7, updates:     3620, train loss: 0.04437, train sloss: 0.12059, train vloss: 0.15195
+time: 445.696, epoch:   7, updates:     3640, train loss: 0.03943, train sloss: 0.11976, train vloss: 0.15814
+time: 441.015, epoch:   7, updates:     3660, train loss: 0.03494, train sloss: 0.12824, train vloss: 0.18045
+time: 460.560, epoch:   7, updates:     3680, train loss: 0.03294, train sloss: 0.12634, train vloss: 0.14831
+========evaluating after 7 epochs========
+slot_acc = 0.9472470843504204
+joint_ds_acc = 0.5149172769189042
+joint_all_acc = 0.41863303498779497
+best_slot_acc = 0.9537564415513968
+best_joint_acc = 0.531326281529699
+best_joint_all_acc = 0.41863303498779497 at epoch 7
+time: 854.572
+==========================================
+time: 236.061, epoch:   8, updates:     3700, train loss: 0.04110, train sloss: 0.11395, train vloss: 0.14199
+time: 388.980, epoch:   8, updates:     3720, train loss: 0.03408, train sloss: 0.10864, train vloss: 0.14244
+time: 437.191, epoch:   8, updates:     3740, train loss: 0.03791, train sloss: 0.12144, train vloss: 0.14499
+time: 443.424, epoch:   8, updates:     3760, train loss: 0.03236, train sloss: 0.11750, train vloss: 0.15424
+time: 465.510, epoch:   8, updates:     3780, train loss: 0.02991, train sloss: 0.12615, train vloss: 0.14876
+time: 440.739, epoch:   8, updates:     3800, train loss: 0.03571, train sloss: 0.11868, train vloss: 0.14955
+time: 401.849, epoch:   8, updates:     3820, train loss: 0.03810, train sloss: 0.10370, train vloss: 0.14041
+time: 437.883, epoch:   8, updates:     3840, train loss: 0.04721, train sloss: 0.11191, train vloss: 0.13825
+time: 442.298, epoch:   8, updates:     3860, train loss: 0.04923, train sloss: 0.12355, train vloss: 0.16460
+time: 447.846, epoch:   8, updates:     3880, train loss: 0.03583, train sloss: 0.11039, train vloss: 0.15318
+time: 422.008, epoch:   8, updates:     3900, train loss: 0.03750, train sloss: 0.12370, train vloss: 0.14057
+time: 403.374, epoch:   8, updates:     3920, train loss: 0.03421, train sloss: 0.12194, train vloss: 0.14155
+time: 475.945, epoch:   8, updates:     3940, train loss: 0.04202, train sloss: 0.12804, train vloss: 0.14843
+time: 427.785, epoch:   8, updates:     3960, train loss: 0.04245, train sloss: 0.11384, train vloss: 0.15006
+time: 459.195, epoch:   8, updates:     3980, train loss: 0.03435, train sloss: 0.10988, train vloss: 0.14413
+time: 392.957, epoch:   8, updates:     4000, train loss: 0.03266, train sloss: 0.11928, train vloss: 0.14505
+time: 500.279, epoch:   8, updates:     4020, train loss: 0.08041, train sloss: 0.12716, train vloss: 0.15890
+time: 396.743, epoch:   8, updates:     4040, train loss: 0.03498, train sloss: 0.11307, train vloss: 0.15428
+time: 441.059, epoch:   8, updates:     4060, train loss: 0.05138, train sloss: 0.11478, train vloss: 0.14092
+time: 443.711, epoch:   8, updates:     4080, train loss: 0.04445, train sloss: 0.11714, train vloss: 0.14099
+time: 421.252, epoch:   8, updates:     4100, train loss: 0.05979, train sloss: 0.11610, train vloss: 0.14899
+time: 431.174, epoch:   8, updates:     4120, train loss: 0.04738, train sloss: 0.12148, train vloss: 0.13521
+time: 421.980, epoch:   8, updates:     4140, train loss: 0.03751, train sloss: 0.11341, train vloss: 0.14000
+time: 474.071, epoch:   8, updates:     4160, train loss: 0.03420, train sloss: 0.12535, train vloss: 0.15531
+time: 459.724, epoch:   8, updates:     4180, train loss: 0.03284, train sloss: 0.13139, train vloss: 0.14458
+time: 411.122, epoch:   8, updates:     4200, train loss: 0.02944, train sloss: 0.11543, train vloss: 0.15000
+========evaluating after 8 epochs========
+slot_acc = 0.9547057228098725
+joint_ds_acc = 0.5336316788717114
+joint_all_acc = 0.4526715486845674
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.5336316788717114
+best_joint_all_acc = 0.4526715486845674 at epoch 8
+time: 1071.710
+==========================================
+time: 92.048, epoch:   9, updates:     4220, train loss: 0.02880, train sloss: 0.11545, train vloss: 0.13452
+time: 478.806, epoch:   9, updates:     4240, train loss: 0.04578, train sloss: 0.10945, train vloss: 0.13597
+time: 475.634, epoch:   9, updates:     4260, train loss: 0.03041, train sloss: 0.10765, train vloss: 0.12697
+time: 465.615, epoch:   9, updates:     4280, train loss: 0.04037, train sloss: 0.10535, train vloss: 0.13994
+time: 410.797, epoch:   9, updates:     4300, train loss: 0.03119, train sloss: 0.10745, train vloss: 0.13302
+time: 458.146, epoch:   9, updates:     4320, train loss: 0.03168, train sloss: 0.10990, train vloss: 0.13179
+time: 457.524, epoch:   9, updates:     4340, train loss: 0.03948, train sloss: 0.11663, train vloss: 0.13450
+time: 508.534, epoch:   9, updates:     4360, train loss: 0.03135, train sloss: 0.10709, train vloss: 0.12790
+time: 489.975, epoch:   9, updates:     4380, train loss: 0.05229, train sloss: 0.12845, train vloss: 0.15181
+time: 463.752, epoch:   9, updates:     4400, train loss: 0.03588, train sloss: 0.11388, train vloss: 0.13444
+time: 469.072, epoch:   9, updates:     4420, train loss: 0.05671, train sloss: 0.13133, train vloss: 0.14831
+time: 477.815, epoch:   9, updates:     4440, train loss: 0.03320, train sloss: 0.11819, train vloss: 0.13036
+time: 468.570, epoch:   9, updates:     4460, train loss: 0.03309, train sloss: 0.12534, train vloss: 0.15652
+time: 415.160, epoch:   9, updates:     4480, train loss: 0.03294, train sloss: 0.11976, train vloss: 0.15371
+time: 453.515, epoch:   9, updates:     4500, train loss: 0.02765, train sloss: 0.11813, train vloss: 0.13997
+time: 406.413, epoch:   9, updates:     4520, train loss: 0.04175, train sloss: 0.11586, train vloss: 0.14272
+time: 442.467, epoch:   9, updates:     4540, train loss: 0.03960, train sloss: 0.11829, train vloss: 0.13898
+time: 401.338, epoch:   9, updates:     4560, train loss: 0.03729, train sloss: 0.11818, train vloss: 0.14179
+time: 485.882, epoch:   9, updates:     4580, train loss: 0.06087, train sloss: 0.13478, train vloss: 0.15619
+time: 459.230, epoch:   9, updates:     4600, train loss: 0.03029, train sloss: 0.11661, train vloss: 0.14605
+time: 480.686, epoch:   9, updates:     4620, train loss: 0.03126, train sloss: 0.12021, train vloss: 0.14495
+time: 446.428, epoch:   9, updates:     4640, train loss: 0.03922, train sloss: 0.10725, train vloss: 0.13627
+time: 486.936, epoch:   9, updates:     4660, train loss: 0.03146, train sloss: 0.10332, train vloss: 0.13063
+time: 483.950, epoch:   9, updates:     4680, train loss: 0.03407, train sloss: 0.11354, train vloss: 0.14082
+time: 436.037, epoch:   9, updates:     4700, train loss: 0.04908, train sloss: 0.11235, train vloss: 0.13814
+time: 471.072, epoch:   9, updates:     4720, train loss: 0.05188, train sloss: 0.11158, train vloss: 0.15552
+time: 441.939, epoch:   9, updates:     4740, train loss: 0.03881, train sloss: 0.11829, train vloss: 0.15121
+========evaluating after 9 epochs========
+slot_acc = 0.9431787360998102
+joint_ds_acc = 0.5395985896392731
+joint_all_acc = 0.4514510442093843
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.5395985896392731
+best_joint_all_acc = 0.4526715486845674 at epoch 8
+time: 830.734
+==========================================
+time: 371.478, epoch:  10, updates:     4760, train loss: 0.03409, train sloss: 0.11611, train vloss: 0.14113
+time: 416.036, epoch:  10, updates:     4780, train loss: 0.03320, train sloss: 0.10135, train vloss: 0.13410
+time: 429.660, epoch:  10, updates:     4800, train loss: 0.03133, train sloss: 0.10949, train vloss: 0.12485
+time: 416.197, epoch:  10, updates:     4820, train loss: 0.02674, train sloss: 0.09645, train vloss: 0.11965
+time: 442.657, epoch:  10, updates:     4840, train loss: 0.03057, train sloss: 0.11223, train vloss: 0.12788
+time: 449.356, epoch:  10, updates:     4860, train loss: 0.03229, train sloss: 0.10722, train vloss: 0.14516
+time: 411.791, epoch:  10, updates:     4880, train loss: 0.02992, train sloss: 0.11019, train vloss: 0.12511
+time: 456.364, epoch:  10, updates:     4900, train loss: 0.03947, train sloss: 0.10111, train vloss: 0.11900
+time: 458.465, epoch:  10, updates:     4920, train loss: 0.05785, train sloss: 0.10042, train vloss: 0.12633
+time: 434.590, epoch:  10, updates:     4940, train loss: 0.04127, train sloss: 0.13045, train vloss: 0.14709
+time: 430.986, epoch:  10, updates:     4960, train loss: 0.04858, train sloss: 0.11484, train vloss: 0.13184
+time: 453.717, epoch:  10, updates:     4980, train loss: 0.03430, train sloss: 0.11418, train vloss: 0.13630
+time: 408.135, epoch:  10, updates:     5000, train loss: 0.03986, train sloss: 0.12625, train vloss: 0.13434
+time: 430.204, epoch:  10, updates:     5020, train loss: 0.04109, train sloss: 0.11686, train vloss: 0.13098
+time: 434.573, epoch:  10, updates:     5040, train loss: 0.02689, train sloss: 0.10317, train vloss: 0.12497
+time: 445.474, epoch:  10, updates:     5060, train loss: 0.05108, train sloss: 0.12291, train vloss: 0.13588
+time: 460.556, epoch:  10, updates:     5080, train loss: 0.06299, train sloss: 0.12125, train vloss: 0.15342
+time: 396.515, epoch:  10, updates:     5100, train loss: 0.04761, train sloss: 0.12062, train vloss: 0.14043
+time: 462.924, epoch:  10, updates:     5120, train loss: 0.03502, train sloss: 0.11277, train vloss: 0.14004
+time: 428.754, epoch:  10, updates:     5140, train loss: 0.03323, train sloss: 0.10465, train vloss: 0.11919
+time: 516.991, epoch:  10, updates:     5160, train loss: 0.06559, train sloss: 0.11842, train vloss: 0.13988
+time: 428.808, epoch:  10, updates:     5180, train loss: 0.07499, train sloss: 0.10999, train vloss: 0.13979
+time: 403.396, epoch:  10, updates:     5200, train loss: 0.05016, train sloss: 0.11519, train vloss: 0.13603
+time: 436.030, epoch:  10, updates:     5220, train loss: 0.05320, train sloss: 0.11953, train vloss: 0.13599
+time: 458.150, epoch:  10, updates:     5240, train loss: 0.03609, train sloss: 0.10833, train vloss: 0.13203
+time: 398.595, epoch:  10, updates:     5260, train loss: 0.02793, train sloss: 0.09906, train vloss: 0.11905
+========evaluating after 10 epochs========
+slot_acc = 0.9528071602929211
+joint_ds_acc = 0.5305126118795769
+joint_all_acc = 0.462435584486032
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.5395985896392731
+best_joint_all_acc = 0.462435584486032 at epoch 10
+time: 935.815
+==========================================
+time: 247.893, epoch:  11, updates:     5280, train loss: 0.04813, train sloss: 0.10545, train vloss: 0.12775
+time: 447.299, epoch:  11, updates:     5300, train loss: 0.17110, train sloss: 0.13926, train vloss: 0.15288
+time: 484.214, epoch:  11, updates:     5320, train loss: 0.06743, train sloss: 0.11292, train vloss: 0.12344
+time: 441.619, epoch:  11, updates:     5340, train loss: 0.09409, train sloss: 0.11389, train vloss: 0.13598
+time: 451.202, epoch:  11, updates:     5360, train loss: 0.05860, train sloss: 0.11456, train vloss: 0.13094
+time: 396.042, epoch:  11, updates:     5380, train loss: 0.05347, train sloss: 0.11212, train vloss: 0.12412
+time: 468.853, epoch:  11, updates:     5400, train loss: 0.04702, train sloss: 0.11922, train vloss: 0.12494
+time: 403.952, epoch:  11, updates:     5420, train loss: 0.03628, train sloss: 0.10368, train vloss: 0.11871
+time: 470.905, epoch:  11, updates:     5440, train loss: 0.05131, train sloss: 0.10290, train vloss: 0.11163
+time: 487.984, epoch:  11, updates:     5460, train loss: 0.06325, train sloss: 0.11163, train vloss: 0.12960
+time: 483.759, epoch:  11, updates:     5480, train loss: 0.03913, train sloss: 0.11729, train vloss: 0.13486
+time: 481.130, epoch:  11, updates:     5500, train loss: 0.04060, train sloss: 0.10730, train vloss: 0.12544
+time: 446.756, epoch:  11, updates:     5520, train loss: 0.03614, train sloss: 0.11777, train vloss: 0.12916
+time: 500.387, epoch:  11, updates:     5540, train loss: 0.03309, train sloss: 0.10307, train vloss: 0.12702
+time: 513.029, epoch:  11, updates:     5560, train loss: 0.03871, train sloss: 0.10991, train vloss: 0.13693
+time: 451.717, epoch:  11, updates:     5580, train loss: 0.04064, train sloss: 0.10386, train vloss: 0.12520
+time: 488.556, epoch:  11, updates:     5600, train loss: 0.03212, train sloss: 0.11102, train vloss: 0.13168
+time: 469.377, epoch:  11, updates:     5620, train loss: 0.03385, train sloss: 0.10731, train vloss: 0.13304
+time: 477.955, epoch:  11, updates:     5640, train loss: 0.03352, train sloss: 0.11354, train vloss: 0.13801
+time: 483.192, epoch:  11, updates:     5660, train loss: 0.03834, train sloss: 0.11045, train vloss: 0.13503
+time: 442.349, epoch:  11, updates:     5680, train loss: 0.03441, train sloss: 0.10546, train vloss: 0.12660
+time: 495.140, epoch:  11, updates:     5700, train loss: 0.03418, train sloss: 0.10608, train vloss: 0.12610
+time: 449.574, epoch:  11, updates:     5720, train loss: 0.03828, train sloss: 0.11697, train vloss: 0.12515
+time: 479.581, epoch:  11, updates:     5740, train loss: 0.04765, train sloss: 0.11483, train vloss: 0.13791
+time: 424.334, epoch:  11, updates:     5760, train loss: 0.03399, train sloss: 0.10497, train vloss: 0.12638
+time: 485.699, epoch:  11, updates:     5780, train loss: 0.04826, train sloss: 0.11090, train vloss: 0.13325
+========evaluating after 11 epochs========
+slot_acc = 0.9534852183346895
+joint_ds_acc = 0.543802549498237
+joint_all_acc = 0.47789530783835094
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.543802549498237
+best_joint_all_acc = 0.47789530783835094 at epoch 11
+time: 1054.314
+==========================================
+time: 80.999, epoch:  12, updates:     5800, train loss: 0.03670, train sloss: 0.07973, train vloss: 0.08372
+time: 459.361, epoch:  12, updates:     5820, train loss: 0.04376, train sloss: 0.09723, train vloss: 0.12183
+time: 494.055, epoch:  12, updates:     5840, train loss: 0.03416, train sloss: 0.10282, train vloss: 0.11812
+time: 420.733, epoch:  12, updates:     5860, train loss: 0.03112, train sloss: 0.09717, train vloss: 0.11088
+time: 504.856, epoch:  12, updates:     5880, train loss: 0.03126, train sloss: 0.10232, train vloss: 0.11466
+time: 478.478, epoch:  12, updates:     5900, train loss: 0.02895, train sloss: 0.11077, train vloss: 0.11706
+time: 456.122, epoch:  12, updates:     5920, train loss: 0.04499, train sloss: 0.10056, train vloss: 0.11848
+time: 425.302, epoch:  12, updates:     5940, train loss: 0.05135, train sloss: 0.11855, train vloss: 0.13648
+time: 424.383, epoch:  12, updates:     5960, train loss: 0.04144, train sloss: 0.10874, train vloss: 0.12117
+time: 469.552, epoch:  12, updates:     5980, train loss: 0.03847, train sloss: 0.10528, train vloss: 0.11657
+time: 453.343, epoch:  12, updates:     6000, train loss: 0.02584, train sloss: 0.09489, train vloss: 0.11051
+time: 426.917, epoch:  12, updates:     6020, train loss: 0.03488, train sloss: 0.10420, train vloss: 0.11192
+time: 454.001, epoch:  12, updates:     6040, train loss: 0.02349, train sloss: 0.10323, train vloss: 0.11046
+time: 528.822, epoch:  12, updates:     6060, train loss: 0.03739, train sloss: 0.11172, train vloss: 0.12921
+time: 465.218, epoch:  12, updates:     6080, train loss: 0.03088, train sloss: 0.10595, train vloss: 0.13398
+time: 483.476, epoch:  12, updates:     6100, train loss: 0.02680, train sloss: 0.10252, train vloss: 0.11578
+time: 466.774, epoch:  12, updates:     6120, train loss: 0.02480, train sloss: 0.09954, train vloss: 0.10498
+time: 437.956, epoch:  12, updates:     6140, train loss: 0.06482, train sloss: 0.10727, train vloss: 0.11466
+time: 476.546, epoch:  12, updates:     6160, train loss: 0.05203, train sloss: 0.11298, train vloss: 0.12699
+time: 422.147, epoch:  12, updates:     6180, train loss: 0.02188, train sloss: 0.08954, train vloss: 0.10237
+time: 465.289, epoch:  12, updates:     6200, train loss: 0.04886, train sloss: 0.11375, train vloss: 0.11799
+time: 491.304, epoch:  12, updates:     6220, train loss: 0.04275, train sloss: 0.10789, train vloss: 0.12993
+time: 471.470, epoch:  12, updates:     6240, train loss: 0.03865, train sloss: 0.09749, train vloss: 0.11866
+time: 482.802, epoch:  12, updates:     6260, train loss: 0.06254, train sloss: 0.12999, train vloss: 0.13010
+time: 484.811, epoch:  12, updates:     6280, train loss: 0.03914, train sloss: 0.10594, train vloss: 0.12819
+time: 462.194, epoch:  12, updates:     6300, train loss: 0.04243, train sloss: 0.10385, train vloss: 0.12132
+time: 487.517, epoch:  12, updates:     6320, train loss: 0.04982, train sloss: 0.10244, train vloss: 0.11561
+========evaluating after 12 epochs========
+slot_acc = 0.9151071331705994
+joint_ds_acc = 0.5250881475454299
+joint_all_acc = 0.46094385679414157
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.543802549498237
+best_joint_all_acc = 0.47789530783835094 at epoch 11
+time: 1048.263
+==========================================
+time: 409.050, epoch:  13, updates:     6340, train loss: 0.03913, train sloss: 0.10648, train vloss: 0.11381
+time: 473.846, epoch:  13, updates:     6360, train loss: 0.04716, train sloss: 0.10259, train vloss: 0.10933
+time: 442.393, epoch:  13, updates:     6380, train loss: 0.02433, train sloss: 0.10286, train vloss: 0.12485
+time: 442.549, epoch:  13, updates:     6400, train loss: 0.03661, train sloss: 0.10061, train vloss: 0.11572
+time: 482.100, epoch:  13, updates:     6420, train loss: 0.04608, train sloss: 0.10665, train vloss: 0.11383
+time: 494.332, epoch:  13, updates:     6440, train loss: 0.03456, train sloss: 0.10808, train vloss: 0.10868
+time: 476.860, epoch:  13, updates:     6460, train loss: 0.03061, train sloss: 0.10999, train vloss: 0.11770
+time: 432.529, epoch:  13, updates:     6480, train loss: 0.02939, train sloss: 0.10539, train vloss: 0.11113
+time: 474.866, epoch:  13, updates:     6500, train loss: 0.03001, train sloss: 0.09684, train vloss: 0.10516
+time: 452.019, epoch:  13, updates:     6520, train loss: 0.03526, train sloss: 0.10553, train vloss: 0.11878
+time: 506.549, epoch:  13, updates:     6540, train loss: 0.02931, train sloss: 0.09833, train vloss: 0.10472
+time: 407.617, epoch:  13, updates:     6560, train loss: 0.03586, train sloss: 0.10263, train vloss: 0.11963
+time: 506.098, epoch:  13, updates:     6580, train loss: 0.03637, train sloss: 0.10743, train vloss: 0.10814
+time: 459.185, epoch:  13, updates:     6600, train loss: 0.03974, train sloss: 0.10619, train vloss: 0.10527
+time: 425.313, epoch:  13, updates:     6620, train loss: 0.02583, train sloss: 0.09595, train vloss: 0.11519
+time: 438.129, epoch:  13, updates:     6640, train loss: 0.02977, train sloss: 0.10483, train vloss: 0.11467
+time: 442.494, epoch:  13, updates:     6660, train loss: 0.04018, train sloss: 0.10280, train vloss: 0.11168
+time: 463.608, epoch:  13, updates:     6680, train loss: 0.02706, train sloss: 0.10017, train vloss: 0.11079
+time: 468.770, epoch:  13, updates:     6700, train loss: 0.03241, train sloss: 0.08944, train vloss: 0.10019
+time: 451.434, epoch:  13, updates:     6720, train loss: 0.04081, train sloss: 0.10444, train vloss: 0.11438
+time: 422.278, epoch:  13, updates:     6740, train loss: 0.04051, train sloss: 0.10559, train vloss: 0.12425
+time: 453.781, epoch:  13, updates:     6760, train loss: 0.03293, train sloss: 0.09460, train vloss: 0.11654
+time: 460.159, epoch:  13, updates:     6780, train loss: 0.02796, train sloss: 0.09373, train vloss: 0.09875
+time: 498.063, epoch:  13, updates:     6800, train loss: 0.04930, train sloss: 0.11707, train vloss: 0.13827
+time: 400.505, epoch:  13, updates:     6820, train loss: 0.04153, train sloss: 0.10623, train vloss: 0.12452
+time: 529.083, epoch:  13, updates:     6840, train loss: 0.03840, train sloss: 0.11027, train vloss: 0.11503
+========evaluating after 13 epochs========
+slot_acc = 0.9487388120423108
+joint_ds_acc = 0.5334960672633577
+joint_all_acc = 0.4671819907784106
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.543802549498237
+best_joint_all_acc = 0.47789530783835094 at epoch 11
+time: 1000.164
+==========================================
+time: 206.447, epoch:  14, updates:     6860, train loss: 0.03532, train sloss: 0.09955, train vloss: 0.10769
+time: 453.927, epoch:  14, updates:     6880, train loss: 0.03415, train sloss: 0.10111, train vloss: 0.10799
+time: 495.153, epoch:  14, updates:     6900, train loss: 0.02304, train sloss: 0.09657, train vloss: 0.10245
+time: 446.391, epoch:  14, updates:     6920, train loss: 0.04768, train sloss: 0.10031, train vloss: 0.11331
+time: 483.345, epoch:  14, updates:     6940, train loss: 0.03151, train sloss: 0.10123, train vloss: 0.11023
+time: 452.475, epoch:  14, updates:     6960, train loss: 0.02102, train sloss: 0.09854, train vloss: 0.10422
+time: 479.353, epoch:  14, updates:     6980, train loss: 0.02948, train sloss: 0.08654, train vloss: 0.10146
+time: 444.716, epoch:  14, updates:     7000, train loss: 0.02802, train sloss: 0.10429, train vloss: 0.11295
+time: 478.358, epoch:  14, updates:     7020, train loss: 0.04410, train sloss: 0.10833, train vloss: 0.11866
+time: 516.644, epoch:  14, updates:     7040, train loss: 0.02159, train sloss: 0.08759, train vloss: 0.08961
+time: 499.863, epoch:  14, updates:     7060, train loss: 0.02472, train sloss: 0.09165, train vloss: 0.10297
+time: 426.889, epoch:  14, updates:     7080, train loss: 0.03586, train sloss: 0.09076, train vloss: 0.10406
+time: 464.056, epoch:  14, updates:     7100, train loss: 0.05577, train sloss: 0.09604, train vloss: 0.10713
+time: 458.077, epoch:  14, updates:     7120, train loss: 0.03651, train sloss: 0.09957, train vloss: 0.10887
+time: 432.608, epoch:  14, updates:     7140, train loss: 0.02612, train sloss: 0.09007, train vloss: 0.10172
+time: 505.644, epoch:  14, updates:     7160, train loss: 0.02559, train sloss: 0.09435, train vloss: 0.10760
+time: 500.888, epoch:  14, updates:     7180, train loss: 0.03466, train sloss: 0.09413, train vloss: 0.10182
+time: 439.200, epoch:  14, updates:     7200, train loss: 0.02942, train sloss: 0.09224, train vloss: 0.10003
+time: 460.600, epoch:  14, updates:     7220, train loss: 0.04008, train sloss: 0.10607, train vloss: 0.12302
+time: 445.176, epoch:  14, updates:     7240, train loss: 0.02633, train sloss: 0.10443, train vloss: 0.11304
+time: 452.247, epoch:  14, updates:     7260, train loss: 0.03761, train sloss: 0.10472, train vloss: 0.11327
+time: 435.312, epoch:  14, updates:     7280, train loss: 0.03181, train sloss: 0.09157, train vloss: 0.10533
+time: 448.568, epoch:  14, updates:     7300, train loss: 0.02444, train sloss: 0.10388, train vloss: 0.10316
+time: 489.494, epoch:  14, updates:     7320, train loss: 0.03010, train sloss: 0.10934, train vloss: 0.11726
+time: 471.976, epoch:  14, updates:     7340, train loss: 0.04193, train sloss: 0.10429, train vloss: 0.10817
+time: 510.981, epoch:  14, updates:     7360, train loss: 0.03519, train sloss: 0.09059, train vloss: 0.10989
+========evaluating after 14 epochs========
+slot_acc = 0.9526715486845674
+joint_ds_acc = 0.5326823976132357
+joint_all_acc = 0.45565500406834825
+best_slot_acc = 0.9547057228098725
+best_joint_acc = 0.543802549498237
+best_joint_all_acc = 0.47789530783835094 at epoch 11
+time: 1040.675
+==========================================
+
