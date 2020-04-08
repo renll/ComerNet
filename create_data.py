@@ -4,7 +4,8 @@ import json
 import os
 import re
 import shutil
-import urllib.request
+import six
+from six.moves.urllib.request import urlopen
 from collections import OrderedDict
 from io import BytesIO
 from zipfile import ZipFile
@@ -147,7 +148,7 @@ def fixDelex(filename, data, data2, idx, idx_acts):
     except:
         return data
 
-    if not isinstance(turn, str):# and not isinstance(turn, unicode):
+    if not isinstance(turn, str) and not isinstance(turn, six.text_type):
         for k, act in turn.items():
             if 'Attraction' in k:
                 if 'restaurant_' in data['log'][idx]['text']:
@@ -176,7 +177,7 @@ def getDialogueAct(filename, data, data2, idx, idx_acts):
     except:
         return acts
 
-    if not isinstance(turn, str): # and not isinstance(turn, unicode):
+    if not isinstance(turn, str) and not isinstance(turn, six.text_type):
         for k in turn.keys():
             # temp = [k.split('-')[0].lower(), k.split('-')[1].lower()]
             # for a in turn[k]:
@@ -314,7 +315,7 @@ def loadData():
 
     if not os.path.exists(data_url):
         print("Downloading and unzipping the MultiWOZ dataset")
-        resp = urllib.request.urlopen(dataset_url)
+        resp = urlopen(dataset_url)
         zip_ref = ZipFile(BytesIO(resp.read()))
         zip_ref.extractall("data/multi-woz")
         zip_ref.close()
