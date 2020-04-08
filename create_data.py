@@ -259,7 +259,7 @@ def analyze_dialogue(dialogue, maxlen):
         #print path
         print('odd # of turns')
         return None  # odd number of turns, wrong dialogue
-    d_pp = {}
+    d_pp = OrderedDict()
     d_pp['goal'] = d['goal']  # for now we just copy the goal
     usr_turns = []
     sys_turns = []
@@ -341,7 +341,7 @@ def getDomain(idx, log, domains, last_domain):
 
 
 def get_ds_diff(prev_d, crnt_d):
-    diff = {}
+    diff = OrderedDict()
     # Sometimes, metadata is an empty dictionary, bug?
     if not prev_d or not crnt_d:
         return diff
@@ -359,7 +359,7 @@ def createData():
     
     # create dictionary of delexicalied values that then we will search against, order matters here!
     # dic = delexicalize.prepareSlotValuesIndependent()
-    delex_data = {}
+    delex_data = OrderedDict()
 
     fin1 = open('data/multi-woz/data.json', 'r')
     data = json.load(fin1)
@@ -408,7 +408,7 @@ def createData():
 
 
 def buildDelexDict(origin_sent, delex_sent):
-    dictionary = {}
+    dictionary = OrderedDict()
     s = difflib.SequenceMatcher(None, delex_sent.split(), origin_sent.split())
     bs = s.get_matching_blocks()
     for i, b in enumerate(bs):
@@ -457,7 +457,7 @@ def divideData(data):
 
         dial = get_dial(data[dialogue_name])
         if dial:
-            dialogue = {}
+            dialogue = OrderedDict()
             dialogue['dialogue_idx'] = dialogue_name
             dialogue['domains'] = list(set(domains)) #list(set([d['domain'] for d in dial]))
             last_bs = []
@@ -465,7 +465,7 @@ def divideData(data):
 
             for turn_i, turn in enumerate(dial):
                 # usr, usr_o, sys, sys_o, sys_a, domain
-                turn_dialog = {}
+                turn_dialog = OrderedDict()
                 turn_dialog['system_transcript'] = dial[turn_i-1]['sys'] if turn_i > 0 else ""
                 turn_dialog['turn_idx'] = turn_i
                 turn_dialog['belief_state'] = [{"slots": [s], "act": "inform"} for s in turn['bvs']]
